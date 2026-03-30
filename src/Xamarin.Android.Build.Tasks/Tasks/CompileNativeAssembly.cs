@@ -44,7 +44,7 @@ namespace Xamarin.Android.Tasks
 
 		void RunAssembler (Config config)
 		{
-			if (config.OutputFile is not null && File.Exists (config.OutputFile)) {
+			if (config.OutputFile is not null && config.InputSource is not null && File.Exists (config.OutputFile)) {
 				string sourceFile = Path.Combine (WorkingDirectory, Path.GetFileName (config.InputSource));
 				if (File.Exists (sourceFile) && File.GetLastWriteTimeUtc (config.OutputFile) >= File.GetLastWriteTimeUtc (sourceFile)) {
 					LogDebugMessage ($"[LLVM llc] Skipping '{Path.GetFileName (config.InputSource)}' because '{Path.GetFileName (config.OutputFile)}' is up to date");
